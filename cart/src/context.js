@@ -8,7 +8,7 @@ const AppContext = React.createContext()
 
 const initialState = {
   loading: false,
-  cart:cartItems,
+  cart: cartItems,
   total: 0,
   amount: 0,
 }
@@ -19,13 +19,18 @@ const AppProvider = ({ children }) => {
 
 
   const clearCart = () => {
-    dispatch({type: 'CLEAR_CART'})
+    dispatch({ type: 'CLEAR_CART' })
+  }
+
+  const remove = (id) => {
+    dispatch({ type: 'REMOVE', payload: id }) // Payload is id
   }
   return (
     <AppContext.Provider
       value={{
         ...state,
         clearCart,
+        remove,
       }}
     >
       {children}
